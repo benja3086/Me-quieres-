@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Me quieres?</title>
+  <style>
+    body {
+      background: #ffeaa7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #questionContainer {
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d63031;
+    }
+
+    button {
+      font-size: 1.5rem;
+      margin: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    #yesBtn {
+      background-color: #55efc4;
+    }
+
+    #noBtn {
+      background-color: #fab1a0;
+      position: absolute;
+    }
+
+    #heartLoader {
+      display: none;
+      font-size: 2rem;
+      margin-top: 2rem;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    #resultContainer {
+      display: none;
+      text-align: center;
+    }
+
+    video {
+      max-width: 100%;
+      border-radius: 20px;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="questionContainer">
+    <h1>¿Me quieres?</h1>
+    <button id="yesBtn">si</button>
+    <button id="noBtn">No </button>
+
+    <div id="heartLoader">cargando el amor...</div>
+    <div id="resultContainer">
+      <h2>¡yo tambien te quiero</h2>
+      <video id="gifResult" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWRxazk3MGF6aHlydTY1Z2tvZWV1bzFsaTJvZW4wMnd3MnNoemF6NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/mh3JykzG3HNjAjDEEG/giphy.mp4" autoplay muted loop></video>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionContainer = document.getElementById("questionContainer");
+    const heartLoader = document.getElementById("heartLoader");
+    const resultContainer = document.getElementById("resultContainer");
+    const gifResult = document.getElementById("gifResult");
+
+    noBtn.addEventListener("mouseover", () => {
+      const containerRect = questionContainer.getBoundingClientRect();
+      const maxX = containerRect.width - noBtn.offsetWidth;
+      const maxY = containerRect.height - noBtn.offsetHeight;
+
+      const newX = Math.floor(Math.random() * maxX);
+      const newY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      heartLoader.style.display = "block";
+      setTimeout(() => {
+        heartLoader.style.display = "none";
+        resultContainer.style.display = "inherit";
+        gifResult.play?.();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
