@@ -82,6 +82,7 @@
     </div>
   </div>
 
+
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
@@ -95,7 +96,7 @@
       const maxX = containerRect.width - noBtn.offsetWidth;
       const maxY = containerRect.height - noBtn.offsetHeight;
 
-      const newX = Math.floor(Math.random() * maxX);
+      const newX = Math.floor(Math.random() *2* maxX);
       const newY = Math.floor(Math.random() * maxY);
 
       noBtn.style.left = `${newX}px`;
